@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "CommonJS",
+    "jsx": "react",
+    "lib": ["ES2020", "DOM"],
+    "outDir": "C:\\Users\\dcarsin\\OneDrive - BYU-Idaho\\BYUi Courses\\WDD 330\\git\\wdd330_group2-1\\build\\tmp\\protected_api",
+    "rootDir": "C:\\Users\\dcarsin\\OneDrive - BYU-Idaho\\BYUi Courses\\WDD 330\\git\\wdd330_group2-1",
+    "baseUrl": "C:\\Users\\dcarsin\\OneDrive - BYU-Idaho\\BYUi Courses\\WDD 330\\git\\wdd330_group2-1\\node_modules",
+    "removeComments": false,
+    "stripInternal": true,
+    "preserveConstEnums": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "noImplicitReturns": false,
+    "newLine": "LF",
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+    "keyofStringsOnly": true,
+    "preserveSymlinks": true,
+    "paths": {},
+    "sourceRoot": "src/code/"
+  },
+  "include": [
+    "../node_modules/*/module-protected.d.ts",
+    "../build/prod/module-protected.d.ts",
+    "../node_modules/*/module.d.ts",
+    "../build/prod/module.d.ts"
+  ],
+  "exclude": ["../node_modules/sabre-ngv-skeleton/**/*"]
+}
