@@ -27,20 +27,20 @@ export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
-  position = "afterbegin",
+  position = 'afterbegin',
   clear = false
 ) {
   const htmlStrings = list.map(templateFn);
   // if clear is true we need to clear out the contents of the parent.
   if (clear) {
-    parentElement.innerHTML = "";
+    parentElement.innerHTML = '';
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
 // function to take an optional object and a template and insert the objects as HTML into the DOM
 export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
+  parentElement.insertAdjacentHTML('afterbegin', template);
   //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
@@ -55,10 +55,10 @@ async function loadTemplate(path) {
 
 // function to dynamically load the header and footer into a page
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const headerElement = document.querySelector("#main-header");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
-  const footerElement = document.querySelector("#main-footer");
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  const headerElement = document.querySelector('#main-header');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+  const footerElement = document.querySelector('#main-footer');
 
   renderWithTemplate(headerTemplate, headerElement);
   renderWithTemplate(footerTemplate, footerElement);
@@ -66,23 +66,23 @@ export async function loadHeaderFooter() {
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener("touchend", (event) => {
+  qs(selector).addEventListener('touchend', (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener("click", callback);
+  qs(selector).addEventListener('click', callback);
 }
 export function alertMessage(message, scroll = true, duration = 3000) {
-  const alert = document.createElement("div");
-  alert.classList.add("alert");
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
   alert.innerHTML = `<p>${message}</p><span>X</span>`;
 
-  alert.addEventListener("click", function (e) {
-    if (e.target.tagName == "SPAN") {
+  alert.addEventListener('click', function (e) {
+    if (e.target.tagName == 'SPAN') {
       main.removeChild(this);
     }
   });
-  const main = document.querySelector("main");
+  const main = document.querySelector('main');
   main.prepend(alert);
   // make sure they see the alert by scrolling to the top of the window
   //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
@@ -95,6 +95,6 @@ export function alertMessage(message, scroll = true, duration = 3000) {
 }
 
 export function removeAllAlerts() {
-  const alerts = document.querySelectorAll(".alert");
-  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+  const alerts = document.querySelectorAll('.alert');
+  alerts.forEach((alert) => document.querySelector('main').removeChild(alert));
 }
