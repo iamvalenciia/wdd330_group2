@@ -1,10 +1,11 @@
+/* eslint-disable no-console */
 import {
   setLocalStorage,
   getLocalStorage,
   alertMessage,
   removeAllAlerts,
-} from "./utils.mjs";
-import ExternalServices from "./ExternalServices.mjs";
+} from './utils.mjs';
+import ExternalServices from './ExternalServices.mjs';
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
@@ -47,16 +48,16 @@ export default class CheckoutProcess {
   }
   calculateItemSummary() {
     const summaryElement = document.querySelector(
-      this.outputSelector + " #cartTotal"
+      this.outputSelector + ' #cartTotal'
     );
     const itemNumElement = document.querySelector(
-      this.outputSelector + " #num-items"
+      this.outputSelector + ' #num-items'
     );
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
-    summaryElement.innerText = "$" + this.itemTotal;
+    summaryElement.innerText = '$' + this.itemTotal;
   }
   calculateOrdertotal() {
     this.shipping = 10 + (this.list.length - 1) * 2;
@@ -69,17 +70,17 @@ export default class CheckoutProcess {
     this.displayOrderTotals();
   }
   displayOrderTotals() {
-    const shipping = document.querySelector(this.outputSelector + " #shipping");
-    const tax = document.querySelector(this.outputSelector + " #tax");
+    const shipping = document.querySelector(this.outputSelector + ' #shipping');
+    const tax = document.querySelector(this.outputSelector + ' #tax');
     const orderTotal = document.querySelector(
-      this.outputSelector + " #orderTotal"
+      this.outputSelector + ' #orderTotal'
     );
-    shipping.innerText = "$" + this.shipping;
-    tax.innerText = "$" + this.tax;
-    orderTotal.innerText = "$" + this.orderTotal;
+    shipping.innerText = '$' + this.shipping;
+    tax.innerText = '$' + this.tax;
+    orderTotal.innerText = '$' + this.orderTotal;
   }
   async checkout() {
-    const formElement = document.forms["checkout"];
+    const formElement = document.forms['checkout'];
 
     const json = formDataToJSON(formElement);
     // add totals, and item details
@@ -92,8 +93,8 @@ export default class CheckoutProcess {
     try {
       const res = await services.checkout(json);
       console.log(res);
-      setLocalStorage("so-cart", []);
-      location.assign("/checkout/success.html");
+      setLocalStorage('so-cart', []);
+      location.assign('/checkout/success.html');
     } catch (err) {
       // get rid of any preexisting alerts.
       removeAllAlerts();

@@ -1,4 +1,4 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate } from './utils.mjs';
 
 function productCardTemplate(product) {
   return `<li class="product-card">
@@ -27,7 +27,7 @@ export default class ProductList {
     // render the list
     this.renderList(list);
     //set the title to the current category
-    document.querySelector(".title").innerHTML = this.category;
+    document.querySelector('.title').innerHTML = this.category;
   }
   // render after doing the first stretch
   renderList(list) {

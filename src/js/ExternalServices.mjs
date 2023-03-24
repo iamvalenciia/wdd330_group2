@@ -1,17 +1,21 @@
-const baseURL = "http://server-nodejs.cit.byui.edu:3000/";
+/* eslint-disable no-console */
+// COMSUMING AN API
+console.log(process.env.VITE_TEST);
+const baseURL = import.meta.env.VITE_SERVER_URL
+
 async function convertToJson(res) {
   const data = await res.json();
   if (res.ok) {
     return data;
   } else {
-    throw { name: "servicesError", message: data };
+    throw { name: 'servicesError', message: data };
   }
 }
 
 export default class ExternalServices {
   constructor(category) {
-    // this.category = category;
-    // this.path = `../json/${this.category}.json`;
+    this.category = category;
+    this.path = `../json/${this.category}.json`;
   }
   async getData(category) {
     const response = await fetch(baseURL + `products/search/${category}`);
@@ -25,12 +29,12 @@ export default class ExternalServices {
   }
   async checkout(payload) {
     const options = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     };
-    return await fetch(baseURL + "checkout/", options).then(convertToJson);
+    return await fetch(baseURL + 'checkout/', options).then(convertToJson);
   }
 }
